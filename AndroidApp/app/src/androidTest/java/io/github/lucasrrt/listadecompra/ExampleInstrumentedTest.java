@@ -1,4 +1,4 @@
-package io.github.lucasrrt.listadecompras;
+package io.github.lucasrrt.listadecompra;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("io.github.lucasrrt.listadecompras", appContext.getPackageName());
+        assertEquals("io.github.lucasrrt.listadecompra", appContext.getPackageName());
     }
 }

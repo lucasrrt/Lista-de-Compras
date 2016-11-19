@@ -1,4 +1,4 @@
-package io.github.lucasrrt.listadecompras;
+package io.github.lucasrrt.listadecompra;
 
 import org.junit.Test;
 
