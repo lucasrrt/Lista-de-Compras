@@ -8,55 +8,55 @@ Aplicativo de Lista de Compras
 
 Gerenciar categoria de produto
 
-[ ] Cadastrar categoria.
+- [ ] Cadastrar categoria.
 
-[ ] Editar categoria.
+- [ ] Editar categoria.
 
-[ ] Listar categorias.
+- [ ] Listar categorias.
 
-[ ] Excluir categoria.
-
-Gerenciar produto
-
-[ ] Cadastrar produto.
-
-[ ] Editar produto.
-
-[ ] Listar produtos.
-
-[ ] Excluir produto.
+- [ ] Excluir categoria.
 
 Gerenciar produto
 
-[ ] Cadastrar lista de compras.
+- [ ] Cadastrar produto.
 
-[ ] Editar lista de compras.
+- [ ] Editar produto.
+
+- [ ] Listar produtos.
+
+- [ ] Excluir produto.
+
+Gerenciar produto
+
+- [ ] Cadastrar lista de compras.
+
+- [ ] Editar lista de compras.
 
 ###Compra
 
 Gerenciar compra
 
-[ ] Iniciar compra.
+- [ ] Iniciar compra.
 
-[ ] Finalizar compra.
+- [ ] Finalizar compra.
 
 Dados de Compra
 
-[ ] Indicar dados.
+- [ ] Indicar dados.
 
 ###Relatório
 
 Gerar relatório
 
-[ ] Por preço de produto em cada mercado (agrupado por produto ou por mercado).
+- [ ] Por preço de produto em cada mercado (agrupado por produto ou por mercado).
 
-[ ] Menores preços de produto.
+- [ ] Menores preços de produto.
 
-[ ] Gastos por mês.
+- [ ] Gastos por mês.
 
 ###Extra
 
-[ ] Deve ser possível sair do aplicativo e voltar para outros pontos do aplicativo a qualquer momento (sidebar).
+- [ ] Deve ser possível sair do aplicativo e voltar para outros pontos do aplicativo a qualquer momento (sidebar).
 
 ## Restrições gerais
 
