@@ -1,56 +1,36 @@
 package io.github.lucasrrt.listaDeCompras;
 import static spark.Spark.*;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 public class App {
 	public static void main(String[] args) {
 		get("/connect", (req, res) -> {
-			doStuff();
-			return "deu certo!";
+			return query(req.queryParams("sql"));
 		});
 	}
 
-	private static void doStuff(){
-		System.out.println("-------- PostgreSQL "
-				+ "JDBC Connection Testing ------------");
-
-		try {
-
-			Class.forName("org.postgresql.Driver");
-
-		} catch (ClassNotFoundException e) {
-
-			System.out.println("Where is your PostgreSQL JDBC Driver? "
-					+ "Include in your library path!");
-			e.printStackTrace();
-			return;
-
-		}
-
-		System.out.println("PostgreSQL JDBC Driver Registered!");
-
+	private static String query(String sql){
 		Connection connection = null;
-
+		Statement statement = null;
 		try {
+			Class.forName("org.postgresql.Driver");
+			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/lista_de_compras","postgres","postgres");
 
-			connection = DriverManager.getConnection(
-					"jdbc:postgresql://127.0.0.1:5432/lista_de_compras","postgres","postgres");
+			statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			//TODO fazer as requisições no banco de dados
+			statement.close();
+			connection.close();
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 
 			System.out.println("Connection Failed! Check output console");
 			e.printStackTrace();
-			return;
+			return "ERRO";
+
 
 		}
-
-		if (connection != null) {
-			System.out.println("You made it, take control your database now!");
-		} else {
-			System.out.println("Failed to make connection!");
-		}
+		return "TODO";
 	}
 }
