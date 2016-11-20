@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 public class CompraActivity extends AppCompatActivity {
     private ArrayList<JSONObject> shopCart;
+    TextView sumCount;
     String market;
     String userId;
     String date;
@@ -29,6 +31,7 @@ public class CompraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         shopCart = new ArrayList<JSONObject>();
+
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -47,7 +50,9 @@ public class CompraActivity extends AppCompatActivity {
             date = (String) savedInstanceState.getSerializable("date");
         }
 
+
         setContentView(R.layout.activity_compra);
+        sumCount = (TextView)findViewById(R.id.sum_count);
 
         ListView view = (ListView) findViewById(R.id.output);
 
@@ -77,8 +82,9 @@ public class CompraActivity extends AppCompatActivity {
                                             JSONObject compra = new JSONObject();
                                             compra.put("preco",priceInput.getText().toString());
                                             compra.put("quantidade",quantityInput.getText().toString());
-                                            compra.put(market,"nome de teste");
+                                            compra.put("mercado",market);
                                             shopCart.add(compra);
+                                            computePrice();
                                             Toast.makeText(activity, "Adicionado", Toast.LENGTH_SHORT).show();
                                         }catch (JSONException e){
                                             Toast.makeText(activity, "Erro", Toast.LENGTH_SHORT).show();
@@ -107,6 +113,7 @@ public class CompraActivity extends AppCompatActivity {
                 sum += obj.getLong("quantidade") * obj.getLong("preco");
             }catch (JSONException e){}
         }
+       sumCount.setText("Total: R$"+sum);
         return sum;
     }
 
@@ -115,10 +122,11 @@ public class CompraActivity extends AppCompatActivity {
             Toast.makeText(this, "Finalizado com sucesso", Toast.LENGTH_SHORT).show();
         };
         AJAXCall.HTTPCallback<String> callbackError = (b)->{
-            Toast.makeText(this, "Erro de conexão", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this, "Erro ao finalizar a compra", Toast.LENGTH_SHORT).show();
         };
         for(int t=0;t < shopCart.size() ; t++) {
-            AJAXCall.post("http://192.168.0.21:4567/compras",null,callback,callbackError);
+            AJAXCall.post("http://192.168.0.23:4567/compras",shopCart.get(t),callback,callbackError);
         }
     }
 
