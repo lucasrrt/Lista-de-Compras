@@ -3,3 +3,4 @@ curl "localhost:4567/categorias/5" -X GET
 curl "localhost:4567/categorias?nome=remedios" -X POST
 curl "localhost:4567/categorias/6" -X DELETE
 curl "localhost:4567/categorias/6?nome=remedios" -X PUT
+curl "localhost:4567/auth?login=brunovcosta&senha=1234" -X GET
