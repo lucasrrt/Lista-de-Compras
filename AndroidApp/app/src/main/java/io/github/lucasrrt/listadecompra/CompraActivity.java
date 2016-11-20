@@ -78,7 +78,12 @@ public class CompraActivity extends AppCompatActivity {
                 });
             }catch (JSONException e){ }
         };
-        AJAXCall.get("http://192.168.0.21:4567/produtos",null,callback);
+        AJAXCall.HTTPCallback<String> callbackError = (data)->{
+            try {
+                Toast.makeText(this, "Erro de conexão", Toast.LENGTH_SHORT).show();
+            }catch (Exception e){ }
+        };
+        AJAXCall.get("http://192.168.0.21:4567/produtos",null,callback,callbackError);
     }
 
 

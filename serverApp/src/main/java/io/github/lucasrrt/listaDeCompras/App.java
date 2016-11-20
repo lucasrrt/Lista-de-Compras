@@ -8,6 +8,10 @@ import java.util.Map.Entry;
 
 public class App {
 	public static void main(String[] args) {
+		get("/auth",(request, response) ->{
+			return auth(request.queryMap().toMap());
+		});
+		
 		get("/:table", (request, response) -> {
 			return index(request.params("table"));
 		});
@@ -47,6 +51,7 @@ public class App {
 	}
 	private static String index(String table){
 		try{
+			System.out.println("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+")t");
 			ResultSet resultSet = query("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+")t");
 			resultSet.next();
 			return resultSet.getString(1);
@@ -117,6 +122,28 @@ public class App {
 			return "ok!";
 		} catch (Exception e) {
 			System.out.println("Destroy Failed! Check output console");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	private static String auth(Map<String,String[]> params){
+		try{
+			List<String> col = new ArrayList();
+			List<String> val = new ArrayList();
+			int updatesNumber = 0;
+			for (Entry<String, String[]> entry :params.entrySet()){
+				if(!entry.getKey().equals(":table")&&!entry.getKey().equals(":id")){
+					col.add(entry.getKey());
+					val.add(String.join(",", entry.getValue()));
+					updatesNumber++;
+				}
+			}	
+			System.out.println("select array_to_json(array_agg(row_to_json(t))) from( select * from usuarios)t where login='"+val.get(1)+"' and senha='"+val.get(0)+"'");
+			ResultSet resultSet = query("select array_to_json(array_agg(row_to_json(t))) from( select * from usuarios)t where login='"+val.get(1)+"' and senha='"+val.get(0)+"'");
+			resultSet.next();
+			return resultSet.getString(1);
+		} catch (Exception e) {
+			System.out.println("Auth Failed! Check output console");
 			e.printStackTrace();
 			return null;
 		}
