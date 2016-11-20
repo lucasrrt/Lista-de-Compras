@@ -1,7 +1,9 @@
 package io.github.lucasrrt.listaDeCompras;
 import static spark.Spark.*;
+
 import java.sql.*;
 import java.util.*;
+import java.util.Map.Entry;
 
 
 public class App {
@@ -9,13 +11,13 @@ public class App {
 		get("/:table", (request, response) -> {
 			return index(request.params("table"));
 		});
-		post("/products", (request, response) -> {
+		post("/:table", (request, response) -> {
+			return create(request.params("table"),request.queryMap().toMap());
+		});
+		put("/:table", (request, response) -> {
 			return query(request.queryParams("sql"));
 		});
-		put("/products", (request, response) -> {
-			return query(request.queryParams("sql"));
-		});
-		delete("/products", (request, response) -> {
+		delete("/:table", (request, response) -> {
 			return query(request.queryParams("sql"));
 		});
 	}
@@ -41,6 +43,47 @@ public class App {
 		}
 	}
 	private static String index(String table){
+		try{
+			ResultSet resultSet = query("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+")t");
+			resultSet.next();
+			return resultSet.getString(1);
+		} catch (Exception e) {
+			System.out.println("Index Failed! Check output console");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	private static String create(String table, Map<String,String[]> params){
+		try{
+			List<String> col = new ArrayList();
+			List<String> val = new ArrayList();
+			for (Entry<String, String[]> entry :params.entrySet()){
+				if(!entry.getKey().equals(":table")&&!entry.getKey().equals(":id")){
+					col.add(entry.getKey());
+					val.add(String.join(",", entry.getValue()));
+				}
+			}	
+			System.out.println("insert into "+table+" ("+String.join(",",col)+") values ("+String.join(",",val)+")");
+			query("insert into "+table+" ("+String.join(",",col)+") values ('"+String.join("','",val)+"')");
+			return "ok!";
+		} catch (Exception e) {
+			System.out.println("Index Failed! Check output console");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	private static String update(String table){
+		try{
+			ResultSet resultSet = query("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+")t");
+			resultSet.next();
+			return resultSet.getString(1);
+		} catch (Exception e) {
+			System.out.println("Index Failed! Check output console");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	private static String destroy(String table){
 		try{
 			ResultSet resultSet = query("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+")t");
 			resultSet.next();
