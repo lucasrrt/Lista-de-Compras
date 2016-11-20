@@ -17,8 +17,8 @@ public class App {
 		put("/:table", (request, response) -> {
 			return query(request.queryParams("sql"));
 		});
-		delete("/:table", (request, response) -> {
-			return query(request.queryParams("sql"));
+		delete("/:table/:id", (request, response) -> {
+			return destroy(request.params(":table"),request.params(":id"));
 		});
 	}
 
@@ -67,29 +67,30 @@ public class App {
 			query("insert into "+table+" ("+String.join(",",col)+") values ('"+String.join("','",val)+"')");
 			return "ok!";
 		} catch (Exception e) {
-			System.out.println("Index Failed! Check output console");
+			System.out.println("Create Failed! Check output console");
 			e.printStackTrace();
 			return null;
 		}
 	}
 	private static String update(String table){
 		try{
+			System.out.println("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+")t");
 			ResultSet resultSet = query("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+")t");
 			resultSet.next();
 			return resultSet.getString(1);
 		} catch (Exception e) {
-			System.out.println("Index Failed! Check output console");
+			System.out.println("Update Failed! Check output console");
 			e.printStackTrace();
 			return null;
 		}
 	}
-	private static String destroy(String table){
+	private static String destroy(String table, String id){
 		try{
-			ResultSet resultSet = query("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+")t");
-			resultSet.next();
-			return resultSet.getString(1);
+			System.out.println("delete from "+table+" where id="+id);
+			ResultSet resultSet = query("delete from "+table+" where id="+id);
+			return "ok!";
 		} catch (Exception e) {
-			System.out.println("Index Failed! Check output console");
+			System.out.println("Destroy Failed! Check output console");
 			e.printStackTrace();
 			return null;
 		}
