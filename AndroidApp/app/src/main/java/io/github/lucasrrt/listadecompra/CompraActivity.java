@@ -21,6 +21,8 @@ import java.util.ArrayList;
 public class CompraActivity extends AppCompatActivity {
     private ArrayList<JSONObject> shopCart;
     String market;
+    String userId;
+    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,22 @@ public class CompraActivity extends AppCompatActivity {
 
         shopCart = new ArrayList<JSONObject>();
 
-        market = "Pão de açucar";
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                market = null;
+                userId = null;
+                date = null;
+            } else {
+                market = extras.getString("mercado");
+                userId = extras.getString("userId");
+                date = extras.getString("date");
+            }
+        } else {
+            market = (String) savedInstanceState.getSerializable("mercado");
+            userId = (String) savedInstanceState.getSerializable("userId");
+            date = (String) savedInstanceState.getSerializable("date");
+        }
 
         setContentView(R.layout.activity_compra);
 

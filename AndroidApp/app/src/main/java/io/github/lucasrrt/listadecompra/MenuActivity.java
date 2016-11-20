@@ -18,7 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MenuActivity extends AppCompatActivity {
-    String newString;
+    String userId;
     TextView print;
 
     @Override
@@ -29,12 +29,12 @@ public class MenuActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
-                newString= null;
+                userId = null;
             } else {
-                newString= extras.getString("ID");
+                userId= extras.getString("ID");
             }
         } else {
-            newString= (String) savedInstanceState.getSerializable("ID");
+            userId= (String) savedInstanceState.getSerializable("ID");
         }
         HelloUser();
     }
@@ -55,7 +55,7 @@ public class MenuActivity extends AppCompatActivity {
             }catch(Exception e){ }
         };
 
-        String url = "http://192.168.0.23:4567/usuarios/"+newString;
+        String url = "http://192.168.0.23:4567/usuarios/"+userId;
         AJAXCall.get(url,null,callback, callbackError);
     }
 
@@ -74,6 +74,7 @@ public class MenuActivity extends AppCompatActivity {
                             Toast.makeText(menuActivity,datePicker.getYear()+"-"+datePicker.getMonth()+"-"+datePicker.getDayOfMonth(), Toast.LENGTH_SHORT).show();
                             Toast.makeText(menuActivity, "Adicionado: "+mercado.getText().toString(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(menuActivity, CompraActivity.class);
+                            intent.putExtra("userId", userId);
                             intent.putExtra("mercado", mercado.getText().toString());
                             intent.putExtra("date", datePicker.getYear()+"-"+datePicker.getMonth()+"-"+datePicker.getDayOfMonth());
 
