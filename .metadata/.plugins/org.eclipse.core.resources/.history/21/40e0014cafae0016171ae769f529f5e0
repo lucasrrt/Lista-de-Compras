@@ -1,0 +1,59 @@
+package io.github.lucasrrt.listaDeCompras;
+import static spark.Spark.*;
+import java.sql.*;
+import java.util.*;
+
+
+public class App {
+	public static void main(String[] args) {
+		get("/:table", (request, response) -> {
+			return index(request.params("table"));
+		});
+		post("/products", (request, response) -> {
+			return query(request.queryParams("sql"));
+		});
+		put("/products", (request, response) -> {
+			return query(request.queryParams("sql"));
+		});
+		delete("/products", (request, response) -> {
+			return query(request.queryParams("sql"));
+		});
+	}
+
+	private static ResultSet query(String sql){
+		Connection connection = null;
+		Statement statement = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+
+			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/lista_de_compras","postgres","postgres");
+			statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+
+			//statement.close();
+			//connection.close();
+
+			return resultSet;
+		} catch (Exception e) {
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	private static String index(String table){
+		try{
+			ResultSet resultSet = query("select * from "+table);
+			String arr = null;
+			while (resultSet.next()) {
+				String em = resultSet.getString(1);
+				arr = em.replace("\n", ",");
+				System.out.println(arr);
+			}
+			return arr;
+		} catch (Exception e) {
+			System.out.println("Index Failed! Check output console");
+			e.printStackTrace();
+			return null;
+		}
+	}
+}

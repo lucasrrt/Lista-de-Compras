@@ -1,0 +1,5 @@
+package io.github.lucasrrt.listaDeCompras;
+
+public class tableParse {
+	static public String table
+}
