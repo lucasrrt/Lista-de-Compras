@@ -78,7 +78,7 @@ public class CompraActivity extends AppCompatActivity {
                 Toast.makeText(this, "Erro de conexão", Toast.LENGTH_SHORT).show();
             }catch (Exception e){ }
         };
-        AJAXCall.get("http://192.168.0.21:4567/produtos",null,callback,callbackError);
+        AJAXCall.get("http://192.168.0.23:4567/produtos",null,callback,callbackError);
     }
 
 
@@ -97,8 +97,11 @@ public class CompraActivity extends AppCompatActivity {
         AJAXCall.HTTPCallback<String> callback = (b)->{
             Toast.makeText(this, "Finalizado com sucesso", Toast.LENGTH_SHORT).show();
         };
+        AJAXCall.HTTPCallback<String> callbackError = (b)->{
+            Toast.makeText(this, "Erro de conexão", Toast.LENGTH_SHORT).show();
+        };
         for(int t=0;t < shopCart.size() ; t++) {
-            AJAXCall.post("http://192.168.0.21:4567/compras",null,callback);
+            AJAXCall.post("http://192.168.0.21:4567/compras",null,callback,callbackError);
         }
     }
 

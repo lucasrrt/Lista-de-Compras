@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 				JSONArray array = new JSONArray(data);
 				intent = new Intent(this,MenuActivity.class);
 				String strName = array.getJSONObject(0).getString("id");
-				intent.putExtra("STRING_I_NEED", strName);
+				intent.putExtra("ID", strName);
                 startActivity(intent);
                 finish();
 			}catch(Exception e){ }

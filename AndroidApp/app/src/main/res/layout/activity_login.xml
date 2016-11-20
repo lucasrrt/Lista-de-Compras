@@ -27,7 +27,8 @@
         android:layout_marginTop="16dp"
         android:id="@+id/login"
         android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:text="a" />
 
     <TextView
         android:text="Senha"
@@ -57,6 +58,7 @@
         android:layout_marginTop="23dp"
         android:id="@+id/senha"
         android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:text="a" />
 
 </RelativeLayout>
