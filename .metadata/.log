@@ -1,0 +1,176 @@
+!SESSION 2016-11-19 20:57:52.548 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=pt_BR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.ui 4 4 2016-11-19 20:58:29.047
+!MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.TaskList.
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2016-11-19 20:58:40.734
+!MESSAGE received no response from STUN server stunserver.org/69.172.201.153:3478 at local address /192.168.0.23:0 (StunServiceImpl.java:420)
+
+!ENTRY de.fu_berlin.inf.dpp 4 0 2016-11-19 21:00:37.785
+!MESSAGE  new connection state == ERROR (XMPPConnectionService.java:400)
+!STACK 0
+gmail.com:5222 Exception: XMPPError connecting to gmail.com:5222.; : remote-server-error(502)
+  -- caused by: XMPPError connecting to gmail.com:5222.: remote-server-error(502) XMPPError connecting to gmail.com:5222.
+  -- caused by: java.net.ConnectException: Tempo esgotado para conexão (Connection timed out)
+	at org.jivesoftware.smack.XMPPConnection.connectUsingConfiguration(XMPPConnection.java:592)
+	at org.jivesoftware.smack.XMPPConnection.connect(XMPPConnection.java:1010)
+	at de.fu_berlin.inf.dpp.net.xmpp.XMPPConnectionService.connect(XMPPConnectionService.java:268)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.connectXMPPInternal(ConnectionHandler.java:332)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.connect(ConnectionHandler.java:190)
+	at de.fu_berlin.inf.dpp.StartupSaros$1.run(StartupSaros.java:113)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Thread.java:745)
+Nested Exception: 
+XMPPError connecting to gmail.com:5222.: remote-server-error(502) XMPPError connecting to gmail.com:5222.
+  -- caused by: java.net.ConnectException: Tempo esgotado para conexão (Connection timed out)
+	at org.jivesoftware.smack.XMPPConnection.connectUsingConfiguration(XMPPConnection.java:565)
+	at org.jivesoftware.smack.XMPPConnection.connect(XMPPConnection.java:1010)
+	at de.fu_berlin.inf.dpp.net.xmpp.XMPPConnectionService.connect(XMPPConnectionService.java:268)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.connectXMPPInternal(ConnectionHandler.java:332)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.connect(ConnectionHandler.java:190)
+	at de.fu_berlin.inf.dpp.StartupSaros$1.run(StartupSaros.java:113)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Thread.java:745)
+Nested Exception: 
+java.net.ConnectException: Tempo esgotado para conexão (Connection timed out)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at org.jivesoftware.smack.proxy.DirectSocketFactory.createSocket(DirectSocketFactory.java:45)
+	at org.jivesoftware.smack.XMPPConnection.connectUsingConfiguration(XMPPConnection.java:557)
+	at org.jivesoftware.smack.XMPPConnection.connect(XMPPConnection.java:1010)
+	at de.fu_berlin.inf.dpp.net.xmpp.XMPPConnectionService.connect(XMPPConnectionService.java:268)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.connectXMPPInternal(ConnectionHandler.java:332)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.connect(ConnectionHandler.java:190)
+	at de.fu_berlin.inf.dpp.StartupSaros$1.run(StartupSaros.java:113)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Thread.java:745)
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:00:54.679
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:00:54.685
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:04:21.493
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:04:21.497
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:06:37.489
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:06:37.494
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:08:07.494
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:08:07.497
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:08:37.128
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:08:37.130
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:21:02.281
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:21:02.283
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:23:02.956
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:23:03.004
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:23:29.350
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:23:29.354
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:24:20.079
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:24:20.085
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:26:28.280
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:26:28.283
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:31:00.149
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:31:00.151
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:35:31.439
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:35:31.441
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:37:27.454
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:37:27.457
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:47:41.631
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 21:47:41.633
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:04:25.312
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:04:25.342
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:05:06.657
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:05:06.672
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:06:16.540
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:06:16.544
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:07:09.148
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:07:09.178
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:08:20.731
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:08:20.733
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:09:55.106
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-11-19 22:09:55.108
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!

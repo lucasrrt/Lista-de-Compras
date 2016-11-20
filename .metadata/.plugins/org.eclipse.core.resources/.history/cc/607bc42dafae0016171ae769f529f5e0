@@ -1,0 +1,32 @@
+package io.github.lucasrrt.listaDeCompras;
+
+import java.sql.*;
+import java.util.*;
+
+public class TableParse {
+	static public String table2string(ResultSet resultSet){
+		try{
+			ResultSetMetaData rsmd = resultSet.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			
+			
+			List allRows = new ArrayList();
+		    while(resultSet.next()){
+		        String[] currentRow = new String[columnsNumber];
+		        for(int i = 1;i<=columnsNumber;i++){
+		            currentRow[i-1]=resultSet.getString(i);
+		        }
+		        allRows.add(currentRow);
+		    }
+			
+			return allRows.toString();
+		
+		}catch(Exception e){
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+			return null;
+		}
+
+		return "Hello World";
+	}
+}
