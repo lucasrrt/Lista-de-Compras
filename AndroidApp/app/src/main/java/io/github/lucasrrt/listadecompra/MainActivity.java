@@ -9,5 +9,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AJAXCall.HTTPCallback<String> callback = (data)-> System.out.println(data);
+        AJAXCall.http("GET","http://paperx.com.br/",null,callback);
+
     }
 }
