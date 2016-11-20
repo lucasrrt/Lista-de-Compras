@@ -18,9 +18,10 @@ public class AJAXCall {
     interface HTTPCallback<T>{
         public void call(T t);
     }
-    static public void http(String method,String path, HashMap<String,String> params,HTTPCallback<String> callback){
+    static public void http(String method,String path, HashMap<String,String> params,HTTPCallback<String> callback, HTTPCallback<String> callbackError){
         AsyncTask task = new AsyncTask() {
             private String str;
+            private int code;
             @Override
             protected Object doInBackground(Object[] params) {
                 try {
@@ -28,6 +29,9 @@ public class AJAXCall {
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod(method);
                     conn.connect();
+
+                    code = conn.getResponseCode();
+
                     InputStream is = conn.getInputStream();
                     str = convertStreamToString(is);
 
@@ -40,7 +44,11 @@ public class AJAXCall {
 
             @Override
             protected void onPostExecute(Object o) {
-                callback.call(str);
+                if(code == 200) {
+                    callback.call(str);
+                } else {
+                    callbackError.call(str);
+                }
             }
         };
         task.execute();
@@ -50,16 +58,16 @@ public class AJAXCall {
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
     }
-    static public void get(String path, HashMap<String,String> params, HTTPCallback<String> callback){
-        http("GET",path,params,callback);
+    static public void get(String path, HashMap<String,String> params, HTTPCallback<String> callback, HTTPCallback<String> callbackError){
+        http("GET",path,params,callback, callbackError);
     }
-    static public void post(String path, HashMap<String,String> params, HTTPCallback<String> callback){
-        http("POST",path,params,callback);
+    static public void post(String path, HashMap<String,String> params, HTTPCallback<String> callback, HTTPCallback<String> callbackError){
+        http("POST",path,params,callback, callbackError);
     }
-    static public void put(String path, HashMap<String,String> params, HTTPCallback<String> callback){
-        http("PUT",path,params,callback);
+    static public void put(String path, HashMap<String,String> params, HTTPCallback<String> callback, HTTPCallback<String> callbackError){
+        http("PUT",path,params,callback, callbackError);
     }
-    static public void delete(String path, HashMap<String,String> params, HTTPCallback<String> callback){
-        http("DELETE",path,params,callback);
+    static public void delete(String path, HashMap<String,String> params, HTTPCallback<String> callback, HTTPCallback<String> callbackError){
+        http("DELETE",path,params,callback, callbackError);
     }
 }

@@ -14,8 +14,25 @@
         android:text="Ola mundo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/print"
+        android:textSize="36sp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView2"
-        android:textSize="36sp" />
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="INICIAR COMPRA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/print"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:id="@+id/compra" />
+
+    <Button
+        android:text="Ver relatórios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relatorio"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

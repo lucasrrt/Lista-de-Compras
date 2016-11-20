@@ -30,13 +30,21 @@ public class LoginActivity extends AppCompatActivity {
 	public void SignIn(View view){
 		AJAXCall.HTTPCallback<String> callback = (data)->{
 			try {
-                intent = new Intent(this,MenuActivity.class);
+				JSONArray array = new JSONArray(data);
+				intent = new Intent(this,MenuActivity.class);
+				String strName = array.getJSONObject(0).getString("id");
+				intent.putExtra("STRING_I_NEED", strName);
                 startActivity(intent);
                 finish();
 			}catch(Exception e){ }
 		};
+		AJAXCall.HTTPCallback<String> callbackError = (data)->{
+			try {
+				Toast.makeText(this, "Usuário ou senha inválidos", Toast.LENGTH_SHORT).show();
+			}catch(Exception e){ }
+		};
 		String url = "http://192.168.0.23:4567/auth?login="+login.getText().toString()+"&senha="+senha.getText().toString();
-		AJAXCall.get(url,null,callback);
+		AJAXCall.get(url,null,callback, callbackError);
 
 
 
