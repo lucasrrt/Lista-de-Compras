@@ -1,11 +1,14 @@
 package io.github.lucasrrt.listadecompra;
 
 import android.os.AsyncTask;
+import android.os.NetworkOnMainThreadException;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.concurrent.Exchanger;
 
 /**
  * Created by bruno on 19/11/16.
@@ -17,6 +20,7 @@ public class AJAXCall {
     }
     static public void http(String method,String path, HashMap<String,String> params,HTTPCallback<String> callback){
         AsyncTask task = new AsyncTask() {
+            private String str;
             @Override
             protected Object doInBackground(Object[] params) {
                 try {
@@ -24,15 +28,19 @@ public class AJAXCall {
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod(method);
                     conn.connect();
-
                     InputStream is = conn.getInputStream();
-                    callback.call(convertStreamToString(is));
+                    str = convertStreamToString(is);
+
 
                 }catch (Exception e){
                     e.printStackTrace();
-                    return "ERRO";
                 }
                 return null;
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                callback.call(str);
             }
         };
         task.execute();
