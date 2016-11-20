@@ -30,7 +30,9 @@ public class AJAXCall {
                     conn.setRequestMethod(method);
                     conn.connect();
 
+
                     code = conn.getResponseCode();
+
 
                     InputStream is = conn.getInputStream();
                     str = convertStreamToString(is);
