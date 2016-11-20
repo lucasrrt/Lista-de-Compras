@@ -1,18 +1,14 @@
 package io.github.lucasrrt.listadecompra;
 
 import android.content.DialogInterface;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,6 +27,8 @@ public class CompraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         shopCart = new ArrayList<JSONObject>();
+
+        market = "Pão de açucar";
 
         setContentView(R.layout.activity_compra);
 
@@ -62,7 +60,7 @@ public class CompraActivity extends AppCompatActivity {
                                             JSONObject compra = new JSONObject();
                                             compra.put("preco",priceInput.getText().toString());
                                             compra.put("quantidade",quantityInput.getText().toString());
-                                            compra.put("mercado","nome de teste");
+                                            compra.put(market,"nome de teste");
                                             shopCart.add(compra);
                                             Toast.makeText(activity, "Adicionado", Toast.LENGTH_SHORT).show();
                                         }catch (JSONException e){
@@ -70,8 +68,7 @@ public class CompraActivity extends AppCompatActivity {
                                         }
 
                                     }
-                                })
-                                .show();
+                                }).show();
                     }
                 });
             }catch (JSONException e){ }
@@ -92,7 +89,12 @@ public class CompraActivity extends AppCompatActivity {
     }
 
     public void finishList(View v) {
-        Toast.makeText(this, "Finalizado", Toast.LENGTH_SHORT).show();
+        AJAXCall.HTTPCallback<String> callback = (b)->{
+            Toast.makeText(this, "Finalizado com sucesso", Toast.LENGTH_SHORT).show();
+        };
+        for(int t=0;t < shopCart.size() ; t++) {
+            AJAXCall.post("http://192.168.0.21:4567/compras",null,callback);
+        }
     }
 
     public void addItem(View v){
