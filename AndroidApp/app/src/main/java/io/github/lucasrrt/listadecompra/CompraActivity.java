@@ -64,7 +64,7 @@ public class CompraActivity extends AppCompatActivity {
                                             JSONObject compra = new JSONObject();
                                             compra.put("preco",priceInput.getText().toString());
                                             compra.put("quantidade",quantityInput.getText().toString());
-                                            compra.put(market,"nome de teste");
+                                            compra.put("mercado",market);
                                             shopCart.add(compra);
                                             computePrice();
                                             Toast.makeText(activity, "Adicionado", Toast.LENGTH_SHORT).show();
@@ -103,8 +103,11 @@ public class CompraActivity extends AppCompatActivity {
         AJAXCall.HTTPCallback<String> callback = (b)->{
             Toast.makeText(this, "Finalizado com sucesso", Toast.LENGTH_SHORT).show();
         };
+        AJAXCall.HTTPCallback<String> callbackError = (b)->{
+            Toast.makeText(this, "Erro ao finalizar a compra", Toast.LENGTH_SHORT).show();
+        };
         for(int t=0;t < shopCart.size() ; t++) {
-            AJAXCall.post("http://192.168.0.21:4567/compras",null,callback);
+            AJAXCall.post("http://192.168.0.21:4567/compras",shopCart.get(t),callback,callbackError);
         }
     }
 
