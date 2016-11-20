@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class CompraActivity extends AppCompatActivity {
     private ArrayList<JSONObject> shopCart;
 
     @Override
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         shopCart = new ArrayList<JSONObject>();
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_compra);
 
         ListView view = (ListView) findViewById(R.id.output);
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     stringArray[t] = array.getJSONObject(t).getString("nome");
                 }
                 view.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, android.R.id.text1, stringArray));
-                MainActivity activity = this;
+                CompraActivity activity = this;
                 view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }catch (JSONException e){ }
         };
-        AJAXCall.http("GET","http://192.168.0.21:4567/produtos",null,callback);
+        AJAXCall.get("http://192.168.0.21:4567/produtos",null,callback);
     }
 
 
