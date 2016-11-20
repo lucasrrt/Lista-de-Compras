@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 public class CompraActivity extends AppCompatActivity {
     private ArrayList<JSONObject> shopCart;
+    TextView sumCount;
     String market;
 
     @Override
@@ -28,9 +30,11 @@ public class CompraActivity extends AppCompatActivity {
 
         shopCart = new ArrayList<JSONObject>();
 
+
         market = "Pão de açucar";
 
         setContentView(R.layout.activity_compra);
+        sumCount = (TextView)findViewById(R.id.sum_count);
 
         ListView view = (ListView) findViewById(R.id.output);
 
@@ -62,6 +66,7 @@ public class CompraActivity extends AppCompatActivity {
                                             compra.put("quantidade",quantityInput.getText().toString());
                                             compra.put(market,"nome de teste");
                                             shopCart.add(compra);
+                                            computePrice();
                                             Toast.makeText(activity, "Adicionado", Toast.LENGTH_SHORT).show();
                                         }catch (JSONException e){
                                             Toast.makeText(activity, "Erro", Toast.LENGTH_SHORT).show();
@@ -85,6 +90,7 @@ public class CompraActivity extends AppCompatActivity {
                 sum += obj.getLong("quantidade") * obj.getLong("preco");
             }catch (JSONException e){}
         }
+       sumCount.setText("Total: R$"+sum);
         return sum;
     }
 
