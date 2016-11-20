@@ -26,7 +26,8 @@
         android:layout_below="@+id/print"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp"
-        android:id="@+id/compra" />
+        android:id="@+id/compra"
+        android:onClick="iniciarCompra"/>
 
     <Button
         android:text="Ver relatórios"
@@ -34,5 +35,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/relatorio"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="verRelatorio"/>
 </RelativeLayout>
