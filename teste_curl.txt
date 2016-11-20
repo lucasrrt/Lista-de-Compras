@@ -1,0 +1,5 @@
+curl "localhost:4567/categorias" -X GET
+curl "localhost:4567/categorias/5" -X GET
+curl "localhost:4567/categorias?nome=remedios" -X POST
+curl "localhost:4567/categorias/6" -X DELETE
+curl "localhost:4567/categorias/6?nome=remedios" -X PUT
