@@ -28,6 +28,7 @@ public class AJAXCall {
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod(method);
                     conn.connect();
+
                     InputStream is = conn.getInputStream();
                     str = convertStreamToString(is);
 

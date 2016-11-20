@@ -1,10 +1,18 @@
 package io.github.lucasrrt.listadecompra;
 
+import android.content.DialogInterface;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,6 +24,7 @@ import java.util.ArrayList;
 
 public class CompraActivity extends AppCompatActivity {
     private ArrayList<JSONObject> shopCart;
+    String market;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +48,30 @@ public class CompraActivity extends AppCompatActivity {
                 view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        CompraFormDialog dialog = new CompraFormDialog(()->{
-                            Toast.makeText(activity,"enviado",Toast.LENGTH_LONG).show();
-                        },()->{
-                            Toast.makeText(activity,"cancelado",Toast.LENGTH_LONG).show();
-                        });
-                        dialog.show(getSupportFragmentManager(),"acho que aqui vem titulo");
+                        View container = LayoutInflater.from(activity).inflate(R.layout.dialog_compra,null);
+                        EditText priceInput = (EditText)container.findViewById(R.id.price);
+                        EditText quantityInput = (EditText)container.findViewById(R.id.quantity);
+                        new AlertDialog.Builder(activity)
+                                .setTitle("Confirmação de compra")
+                                .setMessage("aqui tem uma mensagem que não sei pra que serve")
+                                .setView(container)
+                                .setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        try {
+                                            JSONObject compra = new JSONObject();
+                                            compra.put("preco",priceInput.getText().toString());
+                                            compra.put("quantidade",quantityInput.getText().toString());
+                                            compra.put("mercado","nome de teste");
+                                            shopCart.add(compra);
+                                            Toast.makeText(activity, "Adicionado", Toast.LENGTH_SHORT).show();
+                                        }catch (JSONException e){
+                                            Toast.makeText(activity, "Erro", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+                                })
+                                .show();
                     }
                 });
             }catch (JSONException e){ }
@@ -64,7 +91,17 @@ public class CompraActivity extends AppCompatActivity {
         return sum;
     }
 
-    public void finishShpping(View v) {
+    public void finishList(View v) {
         Toast.makeText(this, "Finalizado", Toast.LENGTH_SHORT).show();
+    }
+
+    public void addItem(View v){
+        EditText quantityEditText = (EditText)findViewById(R.id.quantity);
+        EditText priceEditText = (EditText)findViewById(R.id.price);
+
+        float price = Float.parseFloat(priceEditText.getText().toString());
+        float quantity = Float.parseFloat(quantityEditText.getText().toString());
+
+        Toast.makeText(this, (price*quantity)+"", Toast.LENGTH_SHORT).show();
     }
 }
