@@ -76,7 +76,7 @@ public class MenuActivity extends AppCompatActivity {
                             Intent intent = new Intent(menuActivity, CompraActivity.class);
                             intent.putExtra("userId", userId);
                             intent.putExtra("mercado", mercado.getText().toString());
-                            intent.putExtra("date", datePicker.getYear()+"-"+datePicker.getMonth()+"-"+datePicker.getDayOfMonth());
+                            intent.putExtra("date", datePicker.getYear()+"-"+(datePicker.getMonth()+1)+"-"+datePicker.getDayOfMonth());
 
                             startActivity(intent);
                         }catch (Exception e){
