@@ -39,9 +39,13 @@ public class LoginActivity extends AppCompatActivity {
 			}catch(Exception e){ }
 		};
 		AJAXCall.HTTPCallback<String> callbackError = (data)->{
+			System.out.println("###################");
 			try {
+				System.out.println("###################");
 				Toast.makeText(this, "Usuário ou senha inválidos", Toast.LENGTH_SHORT).show();
+				System.out.println("###################");
 			}catch(Exception e){ }
+			System.out.println("###################");
 		};
 		String url = "http://192.168.0.21:4567/auth?login="+login.getText().toString()+"&senha="+senha.getText().toString();
 		AJAXCall.get(url,null,callback, callbackError);

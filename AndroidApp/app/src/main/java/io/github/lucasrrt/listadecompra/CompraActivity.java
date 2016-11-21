@@ -83,8 +83,8 @@ public class CompraActivity extends AppCompatActivity {
                                             compra.put("preco",priceInput.getText().toString());
                                             compra.put("quantidade",quantityInput.getText().toString());
                                             compra.put("mercado",market);
-                                            compra.put("produto_id",array.get(position));
-                                            compra.put("user_id",userId);
+                                            compra.put("produto_id",array.getJSONObject(position).getString("id"));
+                                            compra.put("usuario_id",userId);
                                             compra.put("data",date);
                                             compra.put("mercado",market);
                                             shopCart.add(compra);
@@ -133,6 +133,7 @@ public class CompraActivity extends AppCompatActivity {
         for(int t=0;t < shopCart.size() ; t++) {
             AJAXCall.post("http://192.168.0.21:4567/compras",shopCart.get(t),callback,callbackError);
         }
+
     }
 
     public void addItem(View v){
