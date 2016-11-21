@@ -122,17 +122,14 @@ public class CompraActivity extends AppCompatActivity {
     }
 
     public void finishList(View v) {
-        AJAXCall.HTTPCallback<String> callback = (b)->{
+            for (int t = 0; t < shopCart.size(); t++) {
+                AJAXCall.post("http://192.168.0.21:4567/compras", shopCart.get(t), (a) -> {
+                }, (e) -> {
+                    Toast.makeText(this, "Erro ao finalizar a compra", Toast.LENGTH_SHORT).show();
+                });
+            }
             Toast.makeText(this, "Finalizado com sucesso", Toast.LENGTH_SHORT).show();
             finish();
-        };
-        AJAXCall.HTTPCallback<String> callbackError = (b)->{
-
-            Toast.makeText(this, "Erro ao finalizar a compra", Toast.LENGTH_SHORT).show();
-        };
-        for(int t=0;t < shopCart.size() ; t++) {
-            AJAXCall.post("http://192.168.0.21:4567/compras",shopCart.get(t),callback,callbackError);
-        }
 
     }
 
