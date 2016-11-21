@@ -1,19 +1,14 @@
 package io.github.lucasrrt.listadecompra;
 
 import android.os.AsyncTask;
-import android.os.NetworkOnMainThreadException;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.concurrent.Exchanger;
 
 /**
  * Created by bruno on 19/11/16.
@@ -62,7 +57,7 @@ public class AJAXCall {
                 if(code == 200) {
                     callback.call(str);
                 } else {
-                    callbackError.call(str);
+                    callbackError.call("ERRO "+code);
                 }
             }
         };

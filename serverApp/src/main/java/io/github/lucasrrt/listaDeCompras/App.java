@@ -51,8 +51,8 @@ public class App {
 	}
 	private static String index(String table){
 		try{
-			System.out.println("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+")t");
-			ResultSet resultSet = query("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+")t");
+			System.out.println("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+") t");
+			ResultSet resultSet = query("select array_to_json(array_agg(row_to_json(t))) from( select * from "+table+") t");
 			resultSet.next();
 			return resultSet.getString(1);
 		} catch (Exception e) {

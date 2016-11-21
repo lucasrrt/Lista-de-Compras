@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 				Toast.makeText(this, "Usuário ou senha inválidos", Toast.LENGTH_SHORT).show();
 			}catch(Exception e){ }
 		};
-		String url = "http://192.168.0.23:4567/auth?login="+login.getText().toString()+"&senha="+senha.getText().toString();
+		String url = "http://192.168.0.21:4567/auth?login="+login.getText().toString()+"&senha="+senha.getText().toString();
 		AJAXCall.get(url,null,callback, callbackError);
 
 
